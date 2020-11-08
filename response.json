@@ -1,0 +1,44 @@
+{
+  "ingredients": [
+    { "item": "olive oil", "measurement": "tbsp", "amount": 4 },
+    { "item": "red onion,sliced", "measurement": null, "amount": 1 },
+    { "item": "garlic cloves,crushed", "measurement": null, "amount": 2 },
+    { "item": "aubergines", "measurement": "g", "amount": 500 },
+    { "item": "ripe tomatoes,quartered", "measurement": "g", "amount": 300 },
+    { "item": "small fennel bulb,sliced", "measurement": null, "amount": 1 },
+    { "item": "sundried tomatoes", "measurement": "g", "amount": 50 },
+    { "item": "coriander seeds", "measurement": "tsp", "amount": 1 },
+    {
+      "item": "small bunch flat leaf parsley,roughly chopped",
+      "measurement": null,
+      "amount": null
+    },
+    {
+      "item": "small bunch basil,roughly chopped",
+      "measurement": null,
+      "amount": null
+    },
+    {
+      "item": "small bunch chives,roughly chopped",
+      "measurement": null,
+      "amount": null
+    },
+    { "item": "olive oil", "measurement": "tbsp", "amount": 2 },
+    { "item": "juice  lemon", "measurement": null, "amount": 1 },
+    { "item": "capers", "measurement": "tsp", "amount": 2 },
+    { "item": "feta cheese", "measurement": "g", "amount": 100 },
+    { "item": "toasted flaked almonds", "measurement": "g", "amount": 50 },
+    {
+      "item": "crusty bread(choose gluten-free if required)",
+      "measurement": null,
+      "amount": null
+    }
+  ],
+  "instructions": [
+    "<p>Pour half of the olive oil into the <a href=\"https://www.bbcgoodfood.com/howto/guide/slow-cookers-and-how-use-them\">slow cooker</a> and put the onions and crushed garlic on top. Slice the aubergines into 1cm thick slices lengthways and brush with the remaining olive oil. Put them into the slow cooker on top of the onions and nestle the tomatoes, fennel slices and sundried tomatoes in and around the aubergines. Sprinkle the coriander seeds over the top then season everything well with salt and pepper.</p>",
+    "<p>Cook on low for 6-8 hours or until the aubergines are soft. Once cooked put all the dressing ingredients into the bowl of a mini food processor and blitz until smooth.</p>",
+    "<p>Transfer the cooked vegetables to a serving platter using a slotted spoon and drizzle over the herby dressing. Top with crumbled feta cheese, flaked almonds and serve with some crusty bread on the side.</p>"
+  ],
+  "title": "Slow cooker aubergines",
+  "description": "<p>An easy vegetarian slow cooker recipe, packed with summer flavours - ideal if you're busy, simply put it on in the morning and it'll be ready come supper time</p>"
+}
