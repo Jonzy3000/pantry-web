@@ -3,18 +3,11 @@ import { useState } from "react";
 interface InputProps {
   onSubmit?: (input: string) => void;
   className?: string;
+  initialValue?: string;
 }
 
-export const Input = ({
-  onSubmit,
-  className,
-  ...rest
-}: InputProps &
-  React.DetailedHTMLProps<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    HTMLInputElement
-  >) => {
-  const [input, setInput] = useState("");
+export const Input = ({ onSubmit, className, initialValue }: InputProps) => {
+  const [input, setInput] = useState(initialValue);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && input.length > 0) {
@@ -32,7 +25,6 @@ export const Input = ({
       onKeyPress={handleKeyDown}
       value={input}
       className={className}
-      {...rest}
     />
   );
 };

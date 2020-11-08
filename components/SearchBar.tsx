@@ -14,7 +14,7 @@ export const SearchBar = ({ initialValue }: Props) => {
     <div className="border-black border">
       <Input
         className="w-full"
-        value={initialValue}
+        initialValue={initialValue}
         onSubmit={(value) =>
           router.push({ pathname: "/search", query: { q: value } })
         }
