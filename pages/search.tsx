@@ -10,16 +10,16 @@ const Search = () => {
   const { status, data, error } = useSearch(query.q as string);
 
   return (
-    <div>
-      <SearchBar initialValue={query.q as string} />
+    <div className="flex flex-col place-items-center">
+      <div className="p-4 w-96">
+        <SearchBar initialValue={query.q as string} />
+      </div>
       {status === "loading" ? (
         "loading"
       ) : status === "error" ? (
         `Error: ${error}`
       ) : (
-        <div>
-          <RecipeView recipe={data} />
-        </div>
+        <div>{data && <RecipeView recipe={data} />}</div>
       )}
     </div>
   );
