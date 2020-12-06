@@ -1,7 +1,5 @@
-import { Ingredient } from "./ingredient";
-
 export interface Recipe {
-  ingredients: Ingredient[];
+  ingredients: string[];
   instructions: string[];
   title: string;
   description?: string;

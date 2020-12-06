@@ -7,7 +7,7 @@ interface InputProps {
 }
 
 export const Input = ({ onSubmit, className, initialValue }: InputProps) => {
-  const [input, setInput] = useState(initialValue);
+  const [input, setInput] = useState(initialValue || "");
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && input.length > 0) {

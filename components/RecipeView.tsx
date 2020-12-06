@@ -12,7 +12,7 @@ export const RecipeView = ({ recipe }: Props) => {
       <div>{recipe.description && ReactHtmlParser(recipe.description)}</div>
       <div>
         {recipe.ingredients.map((it) => (
-          <div key={it.item + it.measurement + it.amount}>{it.item}</div>
+          <div key={it}>{it}</div>
         ))}
       </div>
       <div>{recipe.instructions.map((it) => ReactHtmlParser(it))}</div>
