@@ -19,7 +19,13 @@ const Search = () => {
       ) : status === "error" ? (
         `Error: ${error}`
       ) : (
-        <div>{data && <RecipeView recipe={data} />}</div>
+        <div>
+          {data && (
+            <div>
+              <button value="Save">Save</button> <RecipeView recipe={data} />
+            </div>
+          )}
+        </div>
       )}
     </div>
   );
