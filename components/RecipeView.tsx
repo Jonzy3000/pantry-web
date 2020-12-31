@@ -22,7 +22,9 @@ export const RecipeView = ({ recipe }: Props) => {
       <div>
         <ul className="list-decimal list-inside">
           {recipe.instructions.map((it) => (
-            <li className="mb-6">{ReactHtmlParser(it)}</li>
+            <li key={Math.random() * 100} className="mb-6">
+              {ReactHtmlParser(it)}
+            </li>
           ))}
         </ul>
       </div>

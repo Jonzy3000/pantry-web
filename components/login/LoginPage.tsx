@@ -1,19 +1,10 @@
-import firebase from "firebase/app";
-import { useAuth } from "reactfire";
-import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
+import { LoginForm } from "./LoginForm";
 
-export const Login = () => {
-  const auth = useAuth();
+interface Props {
+  onLogin?: () => void;
+}
 
-  const uiConfig: firebaseui.auth.Config = {
-    signInFlow: "popup",
-    callbacks: {
-      // Avoid redirects after sign-in.
-      signInSuccessWithAuthResult: () => false,
-    },
-    signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
-  };
-
+export const LoginPage = ({ onLogin }: Props) => {
   return (
     <section className="flex flex-col items-center h-screen md:flex-row">
       <div className="container mx-auto">
@@ -35,7 +26,7 @@ export const Login = () => {
             <div className="w-full px-8 py-24 border-gray-100 rounded-lg bg-blue-1300 lg:w-8/12 lg:px-24 lg:py-4 lg:rounded-l-none s">
               <div className="relative z-10 text-left ">
                 <div className="flex justify-enter lg:py-6"></div>
-                <StyledFirebaseAuth firebaseAuth={auth} uiConfig={uiConfig} />
+                <LoginForm onSuccessfulSignIn={onLogin} />
               </div>
             </div>
           </div>

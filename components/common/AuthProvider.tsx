@@ -1,19 +1,17 @@
-import React, { Suspense } from "react";
+import React from "react";
 import { PropsWithChildren, useEffect, useState } from "react";
-import { useUser, preloadFirestore } from "reactfire";
+import { useUser } from "reactfire";
 import NoSSR from "./NoSSR";
 
 import "firebase/auth";
-import { Login } from "./Login";
+import { LoginPage } from "../login/LoginPage";
 
 export const AuthProvider = ({
   children,
 }: PropsWithChildren<{}>): JSX.Element => {
   return (
     <NoSSR>
-      <Suspense fallback={<div>Loading Spinner</div>}>
-        <AuthCheckWithLoading login={<Login />} children={children} />
-      </Suspense>
+      <AuthCheckWithLoading login={<LoginPage />} children={children} />
     </NoSSR>
   );
 };
