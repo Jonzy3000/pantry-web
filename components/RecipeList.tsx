@@ -8,7 +8,8 @@ interface Props {
 export const RecipeList = ({ recipes }: Props) => {
   return (
     <div>
-      {recipes && recipes.map((recipe) => <RecipeCard recipe={recipe} />)}
+      {recipes &&
+        recipes.map((recipe) => <RecipeCard key={recipe.id} recipe={recipe} />)}
     </div>
   );
 };

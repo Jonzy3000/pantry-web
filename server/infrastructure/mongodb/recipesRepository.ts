@@ -28,9 +28,9 @@ export const findRecipeBySource = async (
 ): Promise<Recipe | null> => {
   const { db } = await connectToDatabase();
 
-  const recipe = await db.collection("recipes").findOne({ source });
+  const doc = await db.collection("recipes").findOne({ source });
 
-  return recipe ? convertFromRecipeDocument(recipe) : null;
+  return doc && convertFromRecipeDocument(doc);
 };
 
 export const findRecipesByIds = async (
@@ -45,6 +45,13 @@ export const findRecipesByIds = async (
     .toArray();
 
   return recipes;
+};
+
+export const findRecipeById = async (id: string): Promise<Recipe | null> => {
+  const { db } = await connectToDatabase();
+
+  const doc = await db.collection("recipes").findOne({ _id: id });
+  return doc && convertFromRecipeDocument(doc);
 };
 
 const convertFromRecipeDocument = (document: any): Recipe => {
