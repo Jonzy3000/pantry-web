@@ -42,7 +42,7 @@ export const getUser = async (accessToken: string): Promise<User | null> => {
     name: string;
     email: string;
     image: string;
-    recipes: Array<string>;
+    recipes: Array<string> | undefined;
   } = user;
 
   return {
@@ -50,6 +50,6 @@ export const getUser = async (accessToken: string): Promise<User | null> => {
     name,
     email,
     image,
-    recipes,
+    recipes: recipes || [],
   };
 };
