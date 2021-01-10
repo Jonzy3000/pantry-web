@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useSearch } from "../api-queries/useSearch";
+import React from "react";
 import { Input } from "./common/Input";
 import { useRouter } from "next/router";
 
