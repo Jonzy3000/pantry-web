@@ -3,4 +3,6 @@ export interface Recipe {
   instructions: string[];
   title: string;
   description?: string;
+  id: string;
+  source: string;
 }
