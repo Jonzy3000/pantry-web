@@ -6,8 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "build:static": "next build && next export",
-    "prestart": "npm run build:static",
-    "start": "serve out",
+    "prestart": "npm run build",
+    "start": "next start",
     "lint": "eslint ./src/** --fix"
   },
   "dependencies": {

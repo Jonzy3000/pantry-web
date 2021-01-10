@@ -14,15 +14,18 @@ export const useUser = () => {
     }
   }, [loading, session]);
 
-  return useQuery<User | "unauthorised">(["me"], () =>
-    fetch("/api/me").then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else if (res.status === 401) {
-        return "unauthorised";
-      } else {
-        throw new Error();
-      }
-    })
+  return useQuery<User | "unauthorised">(
+    ["me"],
+    () =>
+      fetch("/api/me").then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else if (res.status === 401) {
+          return "unauthorised";
+        } else {
+          throw new Error();
+        }
+      }),
+    { retry: 1 }
   );
 };

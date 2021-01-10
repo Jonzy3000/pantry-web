@@ -10,13 +10,15 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const session = await getSession({ req });
-
   if (!session?.accessToken) {
     res.status(401).end();
+    return;
   }
+
   const user = await getUser(session.accessToken);
   if (!user) {
     res.status(401).end();
+    return;
   }
 
   if (req.method == "PATCH") {
@@ -24,6 +26,7 @@ export default async function handler(
 
     if (typeof recipeId !== "string") {
       res.status(400).send("Invalid recipeId");
+      return;
     }
 
     await saveRecipeForUser(user.id, recipeId);
@@ -32,6 +35,7 @@ export default async function handler(
 
   if (req.method == "GET") {
     res.status(200).json(user);
+    return;
   }
 
   res.status(501).end();
