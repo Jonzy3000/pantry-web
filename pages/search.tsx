@@ -1,7 +1,44 @@
+import { signIn } from "next-auth/client";
 import { useRouter } from "next/router";
 import { useSearch } from "../api-queries/useSearch";
+import { useUser } from "../api-queries/useUser";
+import { useUserMutation } from "../api-queries/useUserMutation";
 import { RecipeView } from "../components/RecipeView";
 import { SearchBar } from "../components/SearchBar";
+
+const SaveButton = ({ recipeId }: { recipeId: string }) => {
+  const { data, isLoading, isError } = useUser();
+
+  const mutation = useUserMutation();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error...</div>;
+  }
+
+  console.log(data);
+  if (data === "unauthorised") {
+    return <button onClick={() => signIn()}>Sign in</button>;
+  }
+
+  if (data.recipes.includes(recipeId)) {
+    return <div>Saved</div>;
+  }
+  return (
+    <div>
+      <button
+        onClick={() => {
+          mutation.mutate(recipeId);
+        }}
+      >
+        Save Recipe
+      </button>
+    </div>
+  );
+};
 
 const Search = () => {
   const { query } = useRouter();
@@ -21,6 +58,7 @@ const Search = () => {
         <div>
           {data && (
             <div>
+              <SaveButton recipeId={data.id} />
               <RecipeView recipe={data} />
             </div>
           )}

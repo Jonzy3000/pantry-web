@@ -1,5 +1,7 @@
-import NextAuth, { InitOptions } from "next-auth";
+import NextAuth, { InitOptions, Session, User } from "next-auth";
 import Providers from "next-auth/providers";
+import { SessionBase } from "next-auth/_utils";
+import { connectToDatabase } from "../../../server/infrastructure/mongodb/mongodb";
 
 const options: InitOptions = {
   providers: [

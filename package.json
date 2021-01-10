@@ -13,6 +13,7 @@
   "dependencies": {
     "@types/cheerio": "^0.22.23",
     "@types/mongodb": "^3.6.3",
+    "@types/next-auth": "^3.1.20",
     "@types/node-fetch": "^2.5.7",
     "cheerio": "^1.0.0-rc.5",
     "mongodb": "^3.6.3",
@@ -22,8 +23,7 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-html-parser": "^2.0.2",
-    "react-query": "^2.26.2",
-    "react-query-devtools": "^2.6.3",
+    "react-query": "^3.5.11",
     "serve": "^11.3.2",
     "ts-results": "^3.0.0",
     "typeorm": "^0.2.28"

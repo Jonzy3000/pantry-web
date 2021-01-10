@@ -1,7 +1,7 @@
-import { QueryResult, useQuery } from "react-query";
+import { UseQueryResult, useQuery } from "react-query";
 import { Recipe } from "../types/recipe";
 
-export const useSearch = (search: string | null): QueryResult<Recipe> =>
+export const useSearch = (search: string | null): UseQueryResult<Recipe> =>
   useQuery(
     ["recipe", { search }],
     () => {
