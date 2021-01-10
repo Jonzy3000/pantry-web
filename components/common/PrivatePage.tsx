@@ -10,10 +10,6 @@ export const PrivatePage = ({ children }: Props) => {
   const router = useRouter();
   const { data: user, isLoading, isIdle, isLoggedOut } = useUser();
 
-  if (isLoading || isIdle) {
-    return <div>Loading...</div>;
-  }
-
   if (isLoggedOut) {
     router.push(
       `/api/auth/signin?callbackUrl=${encodeURIComponent(
@@ -21,6 +17,10 @@ export const PrivatePage = ({ children }: Props) => {
       )}`
     );
     return <></>;
+  }
+
+  if (isLoading || isIdle) {
+    return <div>Loading...</div>;
   }
 
   if (!user) {

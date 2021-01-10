@@ -6,7 +6,7 @@ import { User } from "../types/user";
 export const useUser = () => {
   const [session, loading] = useSession();
 
-  const hasActiveSession = session && !loading;
+  const hasActiveSession = !!session && !loading;
   const isLoggedOut = !session && !loading;
 
   const queryClient = useQueryClient();

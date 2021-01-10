@@ -11,6 +11,7 @@ export default async function handler(
 
     if (!user) {
       res.status(401).end();
+      return;
     }
 
     const recipes = await findRecipesByIds(user.recipes);
