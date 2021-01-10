@@ -33,6 +33,20 @@ export const findRecipeBySource = async (
   return recipe ? convertFromRecipeDocument(recipe) : null;
 };
 
+export const findRecipesByIds = async (
+  ids: string[]
+): Promise<Array<Recipe>> => {
+  const { db } = await connectToDatabase();
+
+  const recipes = await db
+    .collection("recipes")
+    .find({ _id: { $in: ids } })
+    .map(convertFromRecipeDocument)
+    .toArray();
+
+  return recipes;
+};
+
 const convertFromRecipeDocument = (document: any): Recipe => {
   const { _id, title, ingredients, instructions, source } = JSON.parse(
     JSON.stringify(document)

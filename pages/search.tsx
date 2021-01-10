@@ -7,21 +7,20 @@ import { RecipeView } from "../components/RecipeView";
 import { SearchBar } from "../components/SearchBar";
 
 const SaveButton = ({ recipeId }: { recipeId: string }) => {
-  const { data, isLoading, isError } = useUser();
+  const { data, isLoading, isIdle, isError, isLoggedOut } = useUser();
 
   const mutation = useUserMutation();
 
-  if (isLoading) {
+  if (isLoggedOut) {
+    return <button onClick={() => signIn()}>Sign in</button>;
+  }
+
+  if (isLoading || isIdle) {
     return <div>Loading...</div>;
   }
 
   if (isError) {
     return <div>Error...</div>;
-  }
-
-  console.log(data);
-  if (data === "unauthorised") {
-    return <button onClick={() => signIn()}>Sign in</button>;
   }
 
   if (data.recipes.includes(recipeId)) {

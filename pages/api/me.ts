@@ -4,18 +4,26 @@ import {
   getUser,
   saveRecipeForUser,
 } from "../../server/infrastructure/mongodb/usersRepository";
+import { User } from "../../types/user";
+
+export const getUserFromSession = async (
+  req: NextApiRequest
+): Promise<User | null> => {
+  const session = await getSession({ req });
+
+  if (!session?.accessToken) {
+    return null;
+  }
+
+  return getUser(session.accessToken);
+};
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const session = await getSession({ req });
-  if (!session?.accessToken) {
-    res.status(401).end();
-    return;
-  }
+  const user = await getUserFromSession(req);
 
-  const user = await getUser(session.accessToken);
   if (!user) {
     res.status(401).end();
     return;

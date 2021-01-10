@@ -5,6 +5,10 @@ import { User } from "../types/user";
 
 export const useUser = () => {
   const [session, loading] = useSession();
+
+  const hasActiveSession = session && !loading;
+  const isLoggedOut = !session && !loading;
+
   const queryClient = useQueryClient();
 
   useEffect(() => {
@@ -14,18 +18,18 @@ export const useUser = () => {
     }
   }, [loading, session]);
 
-  return useQuery<User | "unauthorised">(
+  const result = useQuery<User>(
     ["me"],
     () =>
       fetch("/api/me").then((res) => {
         if (res.ok) {
           return res.json();
-        } else if (res.status === 401) {
-          return "unauthorised";
         } else {
           throw new Error();
         }
       }),
-    { retry: 1 }
+    { retry: 1, enabled: hasActiveSession }
   );
+
+  return { ...result, isLoggedOut };
 };

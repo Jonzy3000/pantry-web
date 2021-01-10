@@ -1,47 +1,32 @@
 import React from "react";
-import { useSession, signIn, signOut } from "next-auth/client";
+import { PrivatePage } from "../components/common/PrivatePage";
+import { useUserRecipes } from "../api-queries/useUserRecipes";
+import { useQueryClient } from "react-query";
+import { User } from "../types/user";
+import { RecipeList } from "../components/RecipeList";
 
 const Recipes = () => {
-  const [session, loading] = useSession();
-  console.log(session, loading);
+  const { data: userRecipes, isLoading, isError, isIdle } = useUserRecipes();
 
-  if (loading) {
+  if (isLoading || isIdle) {
     return <div>Loading...</div>;
   }
 
-  if (!session) {
-    return (
-      <div>
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            signIn();
-          }}
-        >
-          Sign In
-        </button>
-      </div>
-    );
+  if (isError) {
+    return <div>Error...</div>;
   }
 
   return (
     <div>
-      {session && (
-        <div>
-          <p>Signed in as {session.user.email}</p>
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              signOut();
-            }}
-          >
-            Sign out
-          </button>
-        </div>
-      )}
-      <div className="text-3xl">Saved Recipes</div>
+      <RecipeList recipes={userRecipes} />
     </div>
   );
 };
 
-export default Recipes;
+const PrivateRecipes = () => (
+  <PrivatePage>
+    <Recipes />
+  </PrivatePage>
+);
+
+export default PrivateRecipes;
