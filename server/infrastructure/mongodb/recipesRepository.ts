@@ -41,8 +41,8 @@ export const findRecipesByIds = async (
   const recipes = await db
     .collection("recipes")
     .find({ _id: { $in: ids } })
-    .map(convertFromRecipeDocument)
-    .toArray();
+    .toArray()
+    .then((docs) => docs.map(convertFromRecipeDocument));
 
   return recipes;
 };
