@@ -19,7 +19,7 @@ export const useUser = () => {
   }, [loading, session]);
 
   const result = useQuery<User>(
-    ["me"],
+    "me",
     () =>
       fetch("/api/me").then((res) => {
         if (res.ok) {
