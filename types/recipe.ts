@@ -5,4 +5,10 @@ export interface Recipe {
   description?: string;
   id: string;
   source: string;
+  times: {
+    cook: string;
+    total: string;
+    prep: string;
+  };
+  images: string[];
 }

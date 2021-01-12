@@ -1,6 +1,5 @@
 import { ObjectId } from "mongodb";
-import { SessionBase } from "next-auth/_utils";
-import { User } from "../../../types/user";
+import { User } from "../../types/user";
 import { connectToDatabase } from "./mongodb";
 
 export const saveRecipeForUser = async (userId, recipeId) => {
@@ -37,11 +36,13 @@ export const getUser = async (accessToken: string): Promise<User | null> => {
     email,
     image,
     recipes,
+    roles,
   }: {
     _id: ObjectId;
     name: string;
     email: string;
     image: string;
+    roles: Array<string> | undefined;
     recipes: Array<string> | undefined;
   } = user;
 
@@ -50,6 +51,7 @@ export const getUser = async (accessToken: string): Promise<User | null> => {
     name,
     email,
     image,
+    roles: roles || [],
     recipes: recipes || [],
   };
 };

@@ -1,4 +1,4 @@
-import { Recipe } from "../../../types/recipe";
+import { Recipe } from "../../types/recipe";
 import { connectToDatabase } from "./mongodb";
 import { Err, Ok, Result } from "ts-results";
 
@@ -54,10 +54,33 @@ export const findRecipeById = async (id: string): Promise<Recipe | null> => {
   return doc && convertFromRecipeDocument(doc);
 };
 
-const convertFromRecipeDocument = (document: any): Recipe => {
-  const { _id, title, ingredients, instructions, source } = JSON.parse(
-    JSON.stringify(document)
-  );
+export const streamAllRecipes = async (
+  callbackData: (recipe: Recipe) => void,
+  callbackEnd
+) => {
+  const { db } = await connectToDatabase();
+  const cursor = db.collection("recipes").find({});
 
-  return { id: _id, ingredients, instructions, source, title };
+  cursor.on("data", (doc) => {
+    const recipe = convertFromRecipeDocument(doc);
+    callbackData(recipe);
+  });
+
+  cursor.on("end", () => {
+    callbackEnd();
+  });
+};
+
+const convertFromRecipeDocument = (document: any): Recipe => {
+  const {
+    _id,
+    title,
+    ingredients,
+    instructions,
+    source,
+    times,
+    images,
+  } = JSON.parse(JSON.stringify(document));
+
+  return { id: _id, ingredients, instructions, source, title, times, images };
 };

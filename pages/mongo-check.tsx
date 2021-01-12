@@ -1,4 +1,4 @@
-import { connectToDatabase } from "../server/infrastructure/mongodb/mongodb";
+import { connectToDatabase } from "../server/db/mongodb";
 
 interface Props {
   isConnected: boolean;

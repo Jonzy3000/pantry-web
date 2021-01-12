@@ -1,11 +1,12 @@
+import { convertImages } from "./convertImages";
 import fetch from "node-fetch";
 import cheerio from "cheerio";
 import crypto from "crypto";
 import { stripHtml } from "./stripHtml";
 import { convertInstructions } from "./convertInstructions";
 import { getRecipeSchema } from "./getRecipeSchema";
-import { Recipe } from "../../../types/recipe";
-import { saveRecipe } from "../mongodb/recipesRepository";
+import { Recipe } from "../../types/recipe";
+import { saveRecipe } from "../db/recipesRepository";
 
 export const scrapeRecipe = async (url: string): Promise<Recipe> => {
   const html = await fetch(url)
@@ -37,12 +38,18 @@ export const scrapeRecipe = async (url: string): Promise<Recipe> => {
 
     return {
       id: hashedId,
+      images: convertImages(recipeJson["image"]),
       source: url,
       ingredients,
       instructions,
       title: stripHtml(recipeJson["name"]),
       description:
         recipeJson["description"] && stripHtml(recipeJson["description"]),
+      times: {
+        cook: recipeJson["cookTime"],
+        prep: recipeJson["prepTime"],
+        total: recipeJson["totalTime"],
+      },
     };
   } catch (e) {
     console.error(e);

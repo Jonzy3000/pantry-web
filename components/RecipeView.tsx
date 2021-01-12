@@ -1,5 +1,6 @@
 import { Recipe } from "../types/recipe";
 import ReactHtmlParser from "react-html-parser";
+import React from "react";
 
 interface Props {
   recipe: Recipe;

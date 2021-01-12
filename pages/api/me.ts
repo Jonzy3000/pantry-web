@@ -1,9 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/client";
-import {
-  getUser,
-  saveRecipeForUser,
-} from "../../server/infrastructure/mongodb/usersRepository";
+import { getUser, saveRecipeForUser } from "../../server/db/usersRepository";
 import { User } from "../../types/user";
 
 export const getUserFromSession = async (
