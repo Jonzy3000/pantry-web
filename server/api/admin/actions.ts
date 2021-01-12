@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { rescrapeAllRecipes } from "../../../server/scrape/rescrapeAllRecipes";
+import { rescrapeAllRecipes } from "../../scrape/rescrapeAllRecipes";
 import { getUserFromSession } from "./../me";
 
 export default async function handler(

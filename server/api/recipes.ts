@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { findRecipesByIds } from "../../server/db/recipesRepository";
+import { findRecipesByIds } from "../db/recipesRepository";
 import { getUserFromSession } from "./me";
 
 export default async function handler(

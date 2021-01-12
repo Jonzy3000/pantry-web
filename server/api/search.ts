@@ -1,9 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import {
-  findRecipeBySource,
-  saveRecipe,
-} from "../../server/db/recipesRepository";
-import { scrapeRecipe } from "../../server/scrape/scrapeRecipe";
+import { findRecipeBySource, saveRecipe } from "../db/recipesRepository";
+import { scrapeRecipe } from "../scrape/scrapeRecipe";
 import { Recipe } from "../../types/recipe";
 
 export default async function handler(
