@@ -8,11 +8,8 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  console.log(req.url);
-  console.log(req.query);
   try {
     if (!req.url) {
-      console.log(404);
       res.status(404).end();
       return;
     }

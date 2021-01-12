@@ -50,5 +50,6 @@ export async function connectToDatabase(): Promise<{
   }
 
   cached.conn = await cached.promise;
+  console.log("waiting for mongodb connection");
   return cached.conn;
 }
