@@ -75,6 +75,7 @@ const convertFromRecipeDocument = (document: any): Recipe => {
   const {
     _id,
     title,
+    description,
     ingredients,
     instructions,
     source,
@@ -82,5 +83,14 @@ const convertFromRecipeDocument = (document: any): Recipe => {
     images,
   } = JSON.parse(JSON.stringify(document));
 
-  return { id: _id, ingredients, instructions, source, title, times, images };
+  return {
+    id: _id,
+    ingredients,
+    instructions,
+    source,
+    title,
+    times,
+    images,
+    description,
+  };
 };
