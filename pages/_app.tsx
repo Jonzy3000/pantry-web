@@ -6,6 +6,7 @@ import { ErrorBoundary } from "../components/common/ErrorBoundary";
 import { Provider } from "next-auth/client";
 import { AppProps } from "next/dist/next-server/lib/router/router";
 import { useEffect } from "react";
+import { Navbar } from "../components/common/Navbar";
 
 const queryClient = new QueryClient();
 
@@ -25,8 +26,11 @@ function MyApp({ Component, pageProps, router }: AppProps) {
               <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <main className="container mx-auto px-4">
-              <Component {...pageProps} />
+            <main className="container mx-auto">
+              <Navbar />
+              <div className="px-6">
+                <Component {...pageProps} />
+              </div>
             </main>
 
             <footer className=""></footer>

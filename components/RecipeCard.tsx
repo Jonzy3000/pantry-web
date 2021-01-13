@@ -9,7 +9,7 @@ interface Props {
 export const RecipeCard = ({ recipe }: Props) => {
   return (
     <Link href={`recipes/${recipe.id}`}>
-      <div className="max-w-md mx-auto bg-white rounded border border-gray-200 overflow-hidden lg:max-w-4xl md:max-w-2xl cursor-pointer">
+      <div className="max-w-md mx-auto bg-white rounded border border-gray-200 md:min-w-full overflow-hidden cursor-pointer">
         <div className="md:flex">
           <div className="md:flex-shrink-0">
             <img
@@ -23,10 +23,7 @@ export const RecipeCard = ({ recipe }: Props) => {
               <h1 className="title-font text-lg font-medium text-gray-900 mb-3">
                 {recipe.title}
               </h1>
-              <p className="mt-2 text-gray-500">
-                Getting a new business off the ground is a lot of hard work.
-                Here are five ideas you can use to find your first customers.
-              </p>
+              <p className="mt-2 text-gray-500">{recipe.description}</p>
             </div>
           </div>
         </div>
