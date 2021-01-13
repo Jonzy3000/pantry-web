@@ -7,7 +7,7 @@ interface Props {
 
 export const RecipeList = ({ recipes }: Props) => {
   return (
-    <div>
+    <div className="grid justify-items-center gap-y-4 md:gap-y-12 mt-12">
       {recipes &&
         recipes.map((recipe) => <RecipeCard key={recipe.id} recipe={recipe} />)}
     </div>
