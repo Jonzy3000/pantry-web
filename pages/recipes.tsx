@@ -18,7 +18,7 @@ const Recipes = () => {
 };
 
 const PrivateRecipes = () => (
-  <PrivatePage fallback={RecipeListSkeleton}>
+  <PrivatePage fallback={<RecipeListSkeleton />}>
     <Recipes />
   </PrivatePage>
 );
