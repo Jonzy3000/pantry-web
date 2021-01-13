@@ -33,3 +33,19 @@ export const RecipeCard = ({ recipe }: Props) => {
     </Link>
   );
 };
+
+export const RecipeCardSkeleton = () => (
+  <div className="max-w-md w-full  mx-auto bg-white rounded border border-gray-200 md:max-w-4xl overflow-hidden cursor-pointer">
+    <div className="md:flex animate-pulse w-full">
+      <div className="md:flex-shrink-0">
+        <div className="h-48 w-full md:w-48 bg-gray-200" />
+      </div>
+      <div className="p-6 flex flex-wrap w-full content-center space-y-3">
+        <div className="h-4 bg-gray-200 rounded w-1/4"></div>
+        <div className="h-3 bg-gray-200 rounded w-full"></div>
+        <div className="h-3 bg-gray-200 rounded w-full"></div>
+        <div className="h-3 bg-gray-200 rounded w-full"></div>
+      </div>
+    </div>
+  </div>
+);

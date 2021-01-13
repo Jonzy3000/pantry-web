@@ -4,9 +4,10 @@ import { useUser } from "../../api-queries/useUser";
 
 interface Props {
   children: React.ReactNode;
+  fallback?: React.ReactNode;
 }
 
-export const PrivatePage = ({ children }: Props) => {
+export const PrivatePage = ({ children, fallback }: Props) => {
   const router = useRouter();
   const { data: user, isLoading, isIdle, isLoggedOut } = useUser();
 
@@ -20,7 +21,7 @@ export const PrivatePage = ({ children }: Props) => {
   }
 
   if (isLoading || isIdle) {
-    return <div>Loading...</div>;
+    return <>{fallback || <div>Loading...</div>}</>;
   }
 
   if (!user) {
