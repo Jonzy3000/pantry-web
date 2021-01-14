@@ -7,6 +7,7 @@ import { Provider } from "next-auth/client";
 import { AppProps } from "next/dist/next-server/lib/router/router";
 import { useEffect } from "react";
 import { Navbar } from "../components/common/Navbar";
+import { PageLayout } from "../components/common/PageLayout";
 
 const queryClient = new QueryClient();
 
@@ -22,16 +23,13 @@ function MyApp({ Component, pageProps, router }: AppProps) {
         <ErrorBoundary>
           <div>
             <Head>
-              <title>Create Next App</title>
+              <title>my-pantry</title>
               <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <main className="container mx-auto">
-              <Navbar />
-              <div className="px-6">
-                <Component {...pageProps} />
-              </div>
-            </main>
+            <PageLayout>
+              <Component {...pageProps} />
+            </PageLayout>
 
             <footer className=""></footer>
           </div>
