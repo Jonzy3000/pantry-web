@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const Navbar = () => {
   return (
-    <div className="sticky bg-white top-0 flex flex-wrap py-2 md:py-6 md:px-10 flex-col md:flex-row items-center">
+    <div className="sticky max-w-4xl mx-auto bg-white top-0 flex flex-wrap flex-col items-center py-2 md:py-6 md:px-10 md:flex-row">
       <Link href="/">
         <a className="flex title-font font-medium items-center text-gray-900 mb-2 md:mb-0">
           <span className="text-2xl">🥦🥦 my-pantry</span>

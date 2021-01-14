@@ -6,9 +6,11 @@ interface Props {
 
 export const PageLayout = ({ children }: Props) => {
   return (
-    <main className="container mx-auto">
+    <div className="bg-white">
       <Navbar />
-      <div className="px-2 md:px-16">{children}</div>
-    </main>
+      <main className="flex flex-col justify-center  max-w-2xl mx-auto px-4 mb-16">
+        {children}
+      </main>
+    </div>
   );
 };
