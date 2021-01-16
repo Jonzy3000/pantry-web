@@ -36,5 +36,5 @@ export default function Home({ recipes }: { recipes: Array<Recipe> }) {
 export async function getStaticProps() {
   const recipes = await findRecipes();
 
-  return { props: { recipes }, revalidate: 1 };
+  return { props: { recipes }, revalidate: 60 * 10 };
 }
