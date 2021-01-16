@@ -1,6 +1,10 @@
 import { ButtonHTMLAttributes } from "react";
 
-interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface Props
+  extends React.DetailedHTMLProps<
+    ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  > {
   variant: "primary" | "info" | "loading";
   children?: React.ReactNode;
 }
