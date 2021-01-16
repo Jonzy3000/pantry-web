@@ -1,8 +1,6 @@
-import { ButtonHTMLAttributes } from "react";
-
 interface Props
   extends React.DetailedHTMLProps<
-    ButtonHTMLAttributes<HTMLButtonElement>,
+    React.HTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   > {
   variant: "primary" | "info" | "loading";
