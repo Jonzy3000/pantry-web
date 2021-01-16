@@ -34,7 +34,7 @@ export const findRecipes = async (
     .find()
     .limit(size)
     .skip(0)
-    .sort({ _id: -1 })
+    .sort({ $natural: -1 })
     .toArray()
     .then((docs) => docs.map(convertFromRecipeDocument));
 
