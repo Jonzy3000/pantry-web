@@ -10,7 +10,7 @@ export const SearchBar = ({ initialValue }: Props) => {
   const router = useRouter();
 
   return (
-    <div className="flex items-center bg-transparent border-gray-800 border-b p-3 focus-within:shadow-outline">
+    <div className="flex items-center bg-transparent border-purple-500 rounded border p-3 focus-within:shadow-outline">
       <Input
         className="w-full bg-transparent focus:outline-none text-xl"
         initialValue={initialValue}

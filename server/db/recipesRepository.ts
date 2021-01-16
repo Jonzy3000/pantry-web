@@ -23,6 +23,24 @@ export const saveRecipe = async ({
   }
 };
 
+export const findRecipes = async (
+  page: number = 0,
+  size: number = 5
+): Promise<Array<Recipe>> => {
+  const { db } = await connectToDatabase();
+
+  const recipes = await db
+    .collection("recipes")
+    .find()
+    .limit(size)
+    .skip(0)
+    .sort({ _id: -1 })
+    .toArray()
+    .then((docs) => docs.map(convertFromRecipeDocument));
+
+  return recipes;
+};
+
 export const findRecipeBySource = async (
   source: string
 ): Promise<Recipe | null> => {

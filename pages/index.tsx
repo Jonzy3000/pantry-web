@@ -1,49 +1,40 @@
+import { useRouter } from "next/router";
+import React from "react";
+import { RecipeList, RecipeListSkeleton } from "../components/RecipeList";
 import { SearchBar } from "../components/SearchBar";
-import Cook from "./resources/cook.svg";
-import Save from "./resources/save2.svg";
-import Search from "./resources/search.svg";
+import { findRecipes } from "../server/db/recipesRepository";
+import { Recipe } from "../types/recipe";
 
-export default function Home() {
+export default function Home({ recipes }: { recipes: Array<Recipe> }) {
+  const router = useRouter();
   return (
     <div className="w-full flex flex-col items-center">
-      <div className="w-screen flex justify-center items-center h-96 bg-purple-100">
-        <div className="max-w-2xl my-24">
-          <div className="flex flex-col">
-            <h1 className="text-2xl lg:text-4xl  mb-12 font-semibold">
-              All your online recipes in one place
-            </h1>
-          </div>
+      <div className="flex w-full justify-center rounded items-center h-64 ">
+        <div className="flex flex-col">
+          <h1 className="text-purple-700 px-4 text-center text-2xl md:text-5xl mb-12 font-semibold">
+            All your online recipes in one place
+          </h1>
           <SearchBar />
         </div>
       </div>
-      <div className="sm:flex flex-col hidden lg:flex-row w-screen justify-around my-24 max-w-screen-md lg:max-w-screen-2xl">
-        <DrawingCard
-          svg={<Search viewBox="0 0 643 448" width="100%" height="150" />}
-          text="Search"
-        />
-        <DrawingCard
-          svg={<Save viewBox="0 0 832 677" width="100%" height="150" />}
-          text="Save"
-        />
-        <DrawingCard
-          svg={<Cook viewBox="0 0 890 692" width="100%" height="150" />}
-          text="Cook"
-        />
+      <div className="w-full">
+        <h2 className="text-2xl font-medium mt-12 px-2 md:px-0 md:px-0">
+          Psst here's some recently added recipes from around the globe
+        </h2>
+        <div className="md:pl-16">
+          {router.isFallback ? (
+            <RecipeListSkeleton />
+          ) : (
+            <RecipeList recipes={recipes} />
+          )}
+        </div>
       </div>
     </div>
   );
 }
 
-interface DrawingCardProps {
-  svg?: React.ReactNode;
-  text: string;
-}
+export async function getStaticProps() {
+  const recipes = await findRecipes();
 
-const DrawingCard = ({ text, svg }: DrawingCardProps) => {
-  return (
-    <div className="flex flex-col flex-grow items-center mx-10 mb-10 lg:px-12 rounded-lg border border-purple-100">
-      <div className="font-medium text-lg p-5">{text}</div>
-      <div className="my-5 xl:m-5">{svg}</div>
-    </div>
-  );
-};
+  return { props: { recipes }, revalidate: 1 };
+}

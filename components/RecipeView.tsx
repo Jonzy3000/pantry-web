@@ -47,7 +47,7 @@ const SaveButton = ({ recipeId }: { recipeId: string }) => {
 
 export const RecipeView = ({ recipe }: Props) => {
   return (
-    <div>
+    <div className="px-4">
       <div className="flex h-14 space-x-4 justify-between items-center mt-4">
         <div>
           <h1 className="text-3xl font-semibold">{recipe.title}</h1>
