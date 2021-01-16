@@ -1,18 +1,20 @@
 import { useSession, signIn, signOut } from "next-auth/client";
 import Link from "next/link";
+import { SearchBar } from "../SearchBar";
+import { Button } from "./Button";
 import styles from "./Navbar.module.css";
 
 export const Navbar = () => {
   return (
-    <div className="sticky max-w-6xl mx-auto bg-white top-0 flex flex-wrap flex-col items-center py-2 px-4 md:py-6 lg:px-10 md:flex-row">
+    <div className="sticky max-w-6xl mx-auto bg-white top-0 flex flex-wrap items-center px-4 py-6 lg:px-10 ">
       <Link href="/">
         <a
-          className={`flex title-font text-2xl font-bold items-center text-gray-900 mb-2 md:mb-0 ${styles.nav}`}
+          className={`flex title-font text-lg md:text-2xl font-bold items-center text-gray-900 mb-2 mb-0 ${styles.nav}`}
         >
           🥦🥦 my-pantry
         </a>
       </Link>
-      <span className="md:ml-auto flex flex-wrap items-center">
+      <span className="ml-auto flex flex-wrap items-center">
         <LoginSensitiveNav />
       </span>
     </div>
@@ -29,9 +31,7 @@ const LoginSensitiveNav = () => {
   if (!session) {
     return (
       <div onClick={() => signIn()}>
-        <button className="text-gray-600 cursor-pointer hover:text-gray-900">
-          Log in
-        </button>
+        <Button variant="primary">Log in</Button>
       </div>
     );
   }
@@ -43,21 +43,13 @@ const LoginSensitiveNav = () => {
           Recipes
         </a>
       </Link>
-      <button
+      <Button
         onClick={() => signOut({ callbackUrl: "/" })}
-        className="mr-8 text-gray-600 cursor-pointer hover:text-gray-900"
+        // className="mr-8 text-gray-600 cursor-pointer hover:text-gray-900"
+        variant="info"
       >
         Logout
-      </button>
-      <div className="md:w-12 md:h-12 h-8 w-8 relative">
-        <div className="group w-full h-full rounded-full overflow-hidden bg-gray-200">
-          <img
-            src={session.user.image}
-            alt="lovely avatar"
-            className="object-cover object-center w-full h-full visible"
-          />
-        </div>
-      </div>
+      </Button>
     </>
   );
 };
