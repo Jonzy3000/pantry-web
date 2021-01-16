@@ -21,6 +21,7 @@ export const Input = ({ onSubmit, className, initialValue }: InputProps) => {
 
   return (
     <input
+      placeholder="Enter your favourite recipe url"
       onChange={handleChange}
       onKeyPress={handleKeyDown}
       value={input}

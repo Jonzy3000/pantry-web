@@ -1,0 +1,16 @@
+.nav {
+  position: relative;
+}
+
+.nav::before {
+  content: "";
+  position: absolute;
+  top: 75%;
+  width: 100%;
+  left: 0;
+  height: 15px;
+  z-index: -1;
+  transform: rotate(-2deg);
+  @apply bg-purple-600;
+  @apply bg-opacity-75;
+}
