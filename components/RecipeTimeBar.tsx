@@ -1,4 +1,4 @@
-import { Clock, ClockOutline } from "heroicons-react";
+import { ClockOutline } from "heroicons-react";
 import React from "react";
 import { Recipe } from "../types/recipe";
 import { Duration } from "luxon";

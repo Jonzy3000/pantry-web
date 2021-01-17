@@ -1,14 +1,10 @@
 import { Recipe } from "../types/recipe";
 import ReactHtmlParser from "react-html-parser";
 import React from "react";
-import { signIn } from "next-auth/client";
 import { useUser } from "../api-queries/useUser";
 import { useUserMutation } from "../api-queries/useUserMutation";
 import { Button } from "./common/Button";
-import { Clock } from "heroicons-react";
-import { timeStamp } from "console";
 import { RecipeTimeBar } from "./RecipeTimeBar";
-import { RecipeImage } from "./RecipeImage";
 interface Props {
   recipe: Recipe;
 }
