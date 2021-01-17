@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
-import { RecipeView } from "../../components/RecipeView";
+import { RecipeSkeletonView, RecipeView } from "../../components/RecipeView";
 import { findRecipeById } from "../../server/db/recipesRepository";
 
 const Recipe = ({ recipe }) => {
   const router = useRouter();
   if (router.isFallback) {
-    return <div>Loading...</div>;
+    return <RecipeSkeletonView />;
   }
 
   if (!recipe) {

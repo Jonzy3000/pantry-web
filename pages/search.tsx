@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useSearch } from "../api-queries/useSearch";
 import { useUser } from "../api-queries/useUser";
 import { useUserMutation } from "../api-queries/useUserMutation";
-import { RecipeView } from "../components/RecipeView";
+import { RecipeSkeletonView, RecipeView } from "../components/RecipeView";
 import { SearchBar } from "../components/SearchBar";
 
 const Search = () => {
@@ -14,7 +14,7 @@ const Search = () => {
   return (
     <div className="flex flex-col place-items-center">
       {status === "loading" ? (
-        "loading"
+        <RecipeSkeletonView />
       ) : status === "error" ? (
         `Error: ${error}`
       ) : (

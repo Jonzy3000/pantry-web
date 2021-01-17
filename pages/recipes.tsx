@@ -7,11 +7,22 @@ import {
   RecipeListSkeleton,
 } from "../components/RecipeList";
 
+const MyRecipeTitle = () => (
+  <h1 className="font-medium text-4xl">My Recipes</h1>
+);
+
+const Fallback = () => {};
+
 const Recipes = () => {
   const { data: userRecipes, isLoading, isError, isIdle } = useUserRecipes();
 
   if (isLoading || isIdle) {
-    return <RecipeListSkeleton />;
+    return (
+      <div>
+        <MyRecipeTitle />
+        <RecipeListSkeleton />
+      </div>
+    );
   }
 
   if (isError) {
@@ -24,14 +35,20 @@ const Recipes = () => {
 
   return (
     <div>
-      <h1 className="font-medium text-4xl">My Recipes</h1>
+      <MyRecipeTitle />
       <RecipeList recipes={userRecipes} />
     </div>
   );
 };
 
 const PrivateRecipes = () => (
-  <PrivatePage fallback={<RecipeListSkeleton />}>
+  <PrivatePage
+    fallback={
+      <div>
+        <MyRecipeTitle /> <RecipeListSkeleton />
+      </div>
+    }
+  >
     <Recipes />
   </PrivatePage>
 );
