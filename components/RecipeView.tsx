@@ -8,6 +8,7 @@ import { Button } from "./common/Button";
 import { Clock } from "heroicons-react";
 import { timeStamp } from "console";
 import { RecipeTimeBar } from "./RecipeTimeBar";
+import { RecipeImage } from "./RecipeImage";
 interface Props {
   recipe: Recipe;
 }
@@ -56,26 +57,39 @@ export const RecipeView = ({ recipe }: Props) => {
         </div>
         <SaveButton recipeId={recipe.id} />
       </div>
-      <div>{recipe.description && ReactHtmlParser(recipe.description)}</div>
+      <div className="mt-2">
+        {recipe.description && ReactHtmlParser(recipe.description)}
+      </div>
       <div className="mt-4 w-full flex justify-center">
         <RecipeTimeBar times={recipe.times} />
       </div>
 
-      <h2 className="text-2xl font-medium mt-8 mb-2">Ingredients</h2>
-      <div>
-        <ul className="list-disc list-inside">
-          {recipe.ingredients.map((it) => (
-            <li className="text-lg" key={it}>
-              {it}
-            </li>
-          ))}
-        </ul>
+      <div className="flex  mt-4">
+        <div className="flex-grow">
+          <h2 className="text-2xl font-medium mb-2">Ingredients</h2>
+
+          <ul className="list-disc list-outside">
+            {recipe.ingredients.map((it) => (
+              <li className="text-lg ml-4" key={it}>
+                {it}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="hidden sm:block">
+          {recipe.images.length > 0 && (
+            <img
+              className="w-60 ml-15 rounded object-cover"
+              src={recipe.images[0]}
+            />
+          )}
+        </div>
       </div>
       <h2 className="text-2xl font-medium mt-8 mb-2">Instructions</h2>
       <div>
-        <ul className="list-decimal list-inside">
+        <ul className="list-decimal list-outside">
           {recipe.instructions.map((it) => (
-            <li key={Math.random() * 100} className="mb-6 text-lg">
+            <li key={Math.random() * 100} className="mb-6 text-lg ml-4">
               {ReactHtmlParser(it)}
             </li>
           ))}
