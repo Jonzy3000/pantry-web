@@ -7,10 +7,10 @@ export const useUserAddRecipeMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation(
-    (recipeId: string) =>
+    (recipe: Recipe) =>
       fetch("/api/me", {
         method: "PATCH",
-        body: JSON.stringify({ recipeId }),
+        body: JSON.stringify({ recipeId: recipe.id }),
         headers: { "Content-Type": "application/json" },
       }),
     {
@@ -18,10 +18,15 @@ export const useUserAddRecipeMutation = () => {
         await queryClient.cancelQueries("me");
 
         const user = queryClient.getQueryData<User>("me");
+        const myRecipes =
+          queryClient.getQueryData<Array<Recipe>>("myRecipes") || [];
+
         queryClient.setQueryData("me", {
           ...user,
-          recipes: [...user.recipes, newRecipe],
+          recipes: [...user.recipes, newRecipe.id],
         });
+
+        queryClient.setQueryData("myRecipes", [newRecipe, ...myRecipes]);
       },
       onSettled: () => {
         queryClient.invalidateQueries("me");

@@ -1,4 +1,3 @@
-import { signIn } from "next-auth/client";
 import { useRouter } from "next/router";
 import { useSearch } from "../api-queries/useSearch";
 import { RecipeSkeletonView, RecipeView } from "../components/RecipeView";

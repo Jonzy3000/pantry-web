@@ -56,12 +56,21 @@ export const findRecipesByIds = async (
 ): Promise<Array<Recipe>> => {
   const { db } = await connectToDatabase();
 
+  // Client side rendering seems slow and hacky (won't be able to page later)
+  // We should denormalise the users recipes
+  // Sorting here to return latest and greatest first
   const recipes = await db
     .collection("recipes")
     .find({ _id: { $in: ids } })
-    .sort({ $natural: -1 })
     .toArray()
-    .then((docs) => docs.map(convertFromRecipeDocument));
+    .then((docs) => docs.map(convertFromRecipeDocument))
+    .then((recipes) =>
+      recipes.sort(
+        (a, b) =>
+          ids.findIndex((id) => b.id === id) -
+          ids.findIndex((id) => a.id === id)
+      )
+    );
 
   return recipes;
 };

@@ -13,7 +13,7 @@ interface Props {
   recipe: Recipe;
 }
 
-const SaveButton = ({ recipeId }: { recipeId: string }) => {
+const SaveButton = ({ recipe }: { recipe: Recipe }) => {
   const { data, isLoading, isIdle, isError, isLoggedOut } = useUser();
 
   const addMutation = useUserAddRecipeMutation();
@@ -31,12 +31,12 @@ const SaveButton = ({ recipeId }: { recipeId: string }) => {
     return <div>Error...</div>;
   }
 
-  if (data.recipes.includes(recipeId)) {
+  if (data.recipes.includes(recipe.id)) {
     return (
       <Button
         variant="info"
         onClick={() => {
-          removeMutation.mutate(recipeId);
+          removeMutation.mutate(recipe.id);
         }}
       >
         Remove
@@ -48,7 +48,7 @@ const SaveButton = ({ recipeId }: { recipeId: string }) => {
       <Button
         variant="primary"
         onClick={() => {
-          addMutation.mutate(recipeId);
+          addMutation.mutate(recipe);
         }}
       >
         Save
@@ -64,7 +64,7 @@ export const RecipeView = ({ recipe }: Props) => {
         <div>
           <h1 className="text-3xl font-semibold">{recipe.title}</h1>
         </div>
-        <SaveButton recipeId={recipe.id} />
+        <SaveButton recipe={recipe} />
       </div>
       <div className="mt-2">
         {recipe.description && ReactHtmlParser(recipe.description)}
