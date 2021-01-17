@@ -12,6 +12,14 @@ export const saveRecipeForUser = async (userId, recipeId) => {
     );
 };
 
+export const deleteRecipeForUser = async (userId, recipeId) => {
+  const { db } = await connectToDatabase();
+  db.collection("users").updateOne(
+    { _id: new ObjectId(userId) },
+    { $pull: { recipes: recipeId } }
+  );
+};
+
 export const getUser = async (accessToken: string): Promise<User | null> => {
   const { db } = await connectToDatabase();
   const retreivedSession = await db

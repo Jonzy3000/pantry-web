@@ -11,8 +11,6 @@ const MyRecipeTitle = () => (
   <h1 className="font-medium text-4xl">My Recipes</h1>
 );
 
-const Fallback = () => {};
-
 const Recipes = () => {
   const { data: userRecipes, isLoading, isError, isIdle } = useUserRecipes();
 

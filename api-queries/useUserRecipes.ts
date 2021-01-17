@@ -8,7 +8,7 @@ export const useUserRecipes = () => {
   const userId = user?.id;
 
   return useQuery<Array<Recipe>>(
-    ["myRecipes", userId],
+    "myRecipes",
     () =>
       fetch("/api/recipes").then((res) => {
         if (res.ok) {

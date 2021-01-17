@@ -9,7 +9,6 @@ interface Props {
 }
 
 export const RecipeCard = ({ recipe }: Props) => {
-  console.log(recipe.images);
   return (
     <Link href={`recipes/${recipe.id}`}>
       <div className="max-w-md mx-auto bg-white rounded border border-gray-200 md:max-w-4xl md:w-full overflow-hidden cursor-pointer">

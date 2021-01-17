@@ -1,10 +1,14 @@
 import { Recipe } from "../types/recipe";
 import ReactHtmlParser from "react-html-parser";
-import React from "react";
+import React, { useEffect } from "react";
 import { useUser } from "../api-queries/useUser";
-import { useUserMutation } from "../api-queries/useUserMutation";
+import {
+  useUserAddRecipeMutation,
+  useUserRemoveRecipeMutation,
+} from "../api-queries/userMutations";
 import { Button } from "./common/Button";
 import { RecipeTimeBar } from "./RecipeTimeBar";
+import { useRouter } from "next/router";
 interface Props {
   recipe: Recipe;
 }
@@ -12,7 +16,8 @@ interface Props {
 const SaveButton = ({ recipeId }: { recipeId: string }) => {
   const { data, isLoading, isIdle, isError, isLoggedOut } = useUser();
 
-  const mutation = useUserMutation();
+  const addMutation = useUserAddRecipeMutation();
+  const removeMutation = useUserRemoveRecipeMutation();
 
   if (isLoggedOut) {
     return <></>;
@@ -27,18 +32,26 @@ const SaveButton = ({ recipeId }: { recipeId: string }) => {
   }
 
   if (data.recipes.includes(recipeId)) {
-    // TODO add unsave
-    return <></>;
+    return (
+      <Button
+        variant="info"
+        onClick={() => {
+          removeMutation.mutate(recipeId);
+        }}
+      >
+        Remove
+      </Button>
+    );
   }
   return (
     <div>
       <Button
         variant="primary"
         onClick={() => {
-          mutation.mutate(recipeId);
+          addMutation.mutate(recipeId);
         }}
       >
-        Save Recipe
+        Save
       </Button>
     </div>
   );

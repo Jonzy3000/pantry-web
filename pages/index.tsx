@@ -1,5 +1,6 @@
+import { useSession } from "next-auth/client";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
 import { RecipeList, RecipeListSkeleton } from "../components/RecipeList";
 import { SearchBar } from "../components/SearchBar";
 import { findRecipes } from "../server/db/recipesRepository";
@@ -7,6 +8,16 @@ import { Recipe } from "../types/recipe";
 
 export default function Home({ recipes }: { recipes: Array<Recipe> }) {
   const router = useRouter();
+
+  const [session] = useSession();
+  useEffect(() => {
+    if (session) {
+      fetch("/api/me/recipes/49975a76b4ca329bc9b464e792d1a76c77578e26", {
+        method: "DELETE",
+      });
+    }
+  }, [session]);
+
   return (
     <div className="w-full flex flex-col items-center">
       <div className="flex w-full justify-center rounded items-center h-64 ">
@@ -18,7 +29,7 @@ export default function Home({ recipes }: { recipes: Array<Recipe> }) {
         </div>
       </div>
       <div className="w-full">
-        <h2 className="text-2xl font-medium mt-12 px-2 md:px-0 md:px-0">
+        <h2 className="text-2xl font-medium mt-12 px-2 md:px-0">
           Psst here's some recently added recipes from around the globe
         </h2>
         <div className="md:pl-16">
