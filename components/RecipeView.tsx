@@ -61,19 +61,21 @@ export const RecipeView = ({ recipe }: Props) => {
         <RecipeTimeBar times={recipe.times} />
       </div>
 
-      <h2 className="text-2xl mt-8 mb-2">Ingredients</h2>
+      <h2 className="text-2xl font-medium mt-8 mb-2">Ingredients</h2>
       <div>
         <ul className="list-disc list-inside">
           {recipe.ingredients.map((it) => (
-            <li key={it}>{it}</li>
+            <li className="text-lg" key={it}>
+              {it}
+            </li>
           ))}
         </ul>
       </div>
-      <h2 className="text-2xl mt-8 mb-2">Instructions</h2>
+      <h2 className="text-2xl font-medium mt-8 mb-2">Instructions</h2>
       <div>
         <ul className="list-decimal list-inside">
           {recipe.instructions.map((it) => (
-            <li key={Math.random() * 100} className="mb-6">
+            <li key={Math.random() * 100} className="mb-6 text-lg">
               {ReactHtmlParser(it)}
             </li>
           ))}
