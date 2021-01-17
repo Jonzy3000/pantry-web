@@ -2,6 +2,7 @@ import React from "react";
 import { Recipe } from "../types/recipe";
 import Link from "next/link";
 import { RecipeImage } from "./RecipeImage";
+import { RecipeTimeBar } from "./RecipeTimeBar";
 
 interface Props {
   recipe: Recipe;
@@ -16,7 +17,7 @@ export const RecipeCard = ({ recipe }: Props) => {
           <div className="md:flex-shrink-0">
             <RecipeImage alt="yummy recipe" recipe={recipe} />
           </div>
-          <div className="p-6 flex flex-wrap content-center">
+          <div className="p-6 flex flex-wrap">
             <div>
               <h1 className="title-font text-xl font-medium text-gray-900 mb-3">
                 {recipe.title}
@@ -24,6 +25,9 @@ export const RecipeCard = ({ recipe }: Props) => {
               <p className="mt-2 text-gray-500 line-clamp-3">
                 {recipe.description}
               </p>
+            </div>
+            <div className="mt-4 self-end flex justify-start md:justify-end w-full">
+              <RecipeTimeBar times={recipe.times} />
             </div>
           </div>
         </div>
