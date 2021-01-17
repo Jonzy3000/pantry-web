@@ -19,7 +19,7 @@ export const getRecipeSchema = (ldJsons: string[]): any => {
         }
       }
 
-      if (json["@type"] === "Recipe") {
+      if (json["@type"]?.toLowerCase() === "recipe") {
         return json;
       }
 
