@@ -28,6 +28,7 @@ export const findRecipes = async (
   size: number = 5
 ): Promise<Array<Recipe>> => {
   const { db } = await connectToDatabase();
+  console.log("connected to db in findRecipes");
 
   const recipes = await db
     .collection("recipes")
@@ -37,6 +38,8 @@ export const findRecipes = async (
     .sort({ $natural: -1 })
     .toArray()
     .then((docs) => docs.map(convertFromRecipeDocument));
+
+  console.log("found recipes in findRecipes");
 
   return recipes;
 };

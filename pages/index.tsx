@@ -45,7 +45,9 @@ export default function Home({ recipes }: { recipes: Array<Recipe> }) {
 }
 
 export async function getStaticProps() {
+  console.log("fetching recipes");
   const recipes = await findRecipes();
 
+  console.log("returning props");
   return { props: { recipes }, revalidate: 60 * 10 };
 }
