@@ -22,7 +22,11 @@ const SSR = ({ isConnected }: Props) => {
 export async function getServerSideProps() {
   const { client } = await connectToDatabase();
 
+  console.log("connected to db");
+
   const isConnected = await client.isConnected();
+
+  console.log(`connected: ${isConnected}`);
 
   return {
     props: { isConnected },

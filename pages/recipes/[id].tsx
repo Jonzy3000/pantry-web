@@ -1,4 +1,4 @@
-import { RecipeSkeletonView, RecipeView } from "../../components/RecipeView";
+import { RecipeView } from "../../components/RecipeView";
 import { findRecipeById } from "../../server/db/recipesRepository";
 
 const Recipe = ({ recipe }) => {
