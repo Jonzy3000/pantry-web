@@ -27,8 +27,9 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+  console.log(`static props of recipe: ${params.id}`);
   const recipe = await findRecipeById(params.id);
-
+  console.log("found recipe in static props");
   return { props: { recipe } };
 }
 

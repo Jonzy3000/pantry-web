@@ -49,7 +49,7 @@ export async function connectToDatabase(): Promise<{
     });
   }
 
-  cached.conn = await cached.promise;
   console.log("waiting for mongodb connection");
+  cached.conn = await cached.promise;
   return cached.conn;
 }

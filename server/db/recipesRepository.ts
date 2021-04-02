@@ -79,9 +79,12 @@ export const findRecipesByIds = async (
 };
 
 export const findRecipeById = async (id: string): Promise<Recipe | null> => {
+  console.log("connectiong to db in find recipes...");
   const { db } = await connectToDatabase();
+  console.log("connected to db");
 
   const doc = await db.collection("recipes").findOne({ _id: id });
+  console.log("found recipe in mongo");
   return doc && convertFromRecipeDocument(doc);
 };
 
