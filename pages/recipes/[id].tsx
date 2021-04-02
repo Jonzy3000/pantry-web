@@ -29,7 +29,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const recipe = await findRecipeById(params.id);
 
-  return { props: { recipe }, revalidate: 60 * 10 };
+  return { props: { recipe } };
 }
 
 export default Recipe;
