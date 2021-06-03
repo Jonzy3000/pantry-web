@@ -11,7 +11,6 @@
     "lint": "eslint ./src/** --fix"
   },
   "dependencies": {
-    "@netlify/plugin-nextjs": "^3.1.1-experimental-odb.1",
     "@svgr/webpack": "^5.5.0",
     "@tailwindcss/line-clamp": "^0.1.0",
     "@types/cheerio": "^0.22.23",
