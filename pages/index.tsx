@@ -1,6 +1,6 @@
 import { useSession } from "next-auth/client";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
 import { RecipeList, RecipeListSkeleton } from "../components/RecipeList";
 import { SearchBar } from "../components/SearchBar";
 import { findRecipes } from "../server/db/recipesRepository";
@@ -8,6 +8,15 @@ import { Recipe } from "../types/recipe";
 
 export default function Home({ recipes }: { recipes: Array<Recipe> }) {
   const router = useRouter();
+
+  const [session] = useSession();
+  useEffect(() => {
+    if (session) {
+      fetch("/api/me/recipes/49975a76b4ca329bc9b464e792d1a76c77578e26", {
+        method: "DELETE",
+      });
+    }
+  }, [session]);
 
   return (
     <div className="w-full flex flex-col items-center">
@@ -36,9 +45,7 @@ export default function Home({ recipes }: { recipes: Array<Recipe> }) {
 }
 
 export async function getStaticProps() {
-  console.log("fetching recipes");
   const recipes = await findRecipes();
 
-  console.log("returning props");
-  return { props: { recipes } };
+  return { props: { recipes }, revalidate: 60 * 10 };
 }

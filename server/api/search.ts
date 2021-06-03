@@ -17,11 +17,8 @@ export default async function handler(
 
     try {
       const recipe = await getRecipe(url);
-      console.log("found recipe");
       saveRecipe(recipe);
-      console.log("saving recipe");
       res.status(200).json(recipe);
-      console.log("returning recipe back");
     } catch (e) {
       res.status(500).json(e);
     }
