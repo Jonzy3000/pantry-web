@@ -4,10 +4,9 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { ErrorBoundary } from "../components/common/ErrorBoundary";
 import { Provider } from "next-auth/client";
-import { AppProps } from "next/dist/next-server/lib/router/router";
 import { useEffect } from "react";
-import { Navbar } from "../components/common/Navbar";
 import { PageLayout } from "../components/common/PageLayout";
+import { AppProps } from "next/dist/shared/lib/router/router";
 
 const queryClient = new QueryClient();
 

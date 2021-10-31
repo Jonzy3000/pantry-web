@@ -1,8 +1,8 @@
-import NextAuth, { InitOptions, Session, User } from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import Providers from "next-auth/providers";
 require("mongodb");
 
-const options: InitOptions = {
+const options: NextAuthOptions = {
   providers: [
     Providers.Google({
       clientId: process.env.GOOGLE_ID,

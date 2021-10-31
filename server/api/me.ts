@@ -12,7 +12,7 @@ export const getUserFromSession = async (
     return null;
   }
 
-  return getUser(session.accessToken);
+  return getUser(session.accessToken as string);
 };
 
 export default async function handler(
