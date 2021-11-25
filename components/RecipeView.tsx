@@ -61,8 +61,8 @@ const SaveButton = ({ recipe }: { recipe: Recipe }) => {
 export const RecipeView = ({ recipe }: Props) => {
   return (
     <div className="px-4">
-      <div className="grid grid-flow-col grid-rows-2 gap-x-8 pb-6 border-b">
-        <div className="col-span-2">
+      <div className="grid grid-flow-col grid-rows-4 gap-y-4 gap-x-8 pb-6 border-b">
+        <div className="col-span-2 row-span-3">
           <h1 className="text-4xl font-semibold">
             <a href={recipe.source} target="#">
               {recipe.title}
@@ -72,11 +72,11 @@ export const RecipeView = ({ recipe }: Props) => {
             {recipe.description && ReactHtmlParser(recipe.description)}
           </div>
         </div>
-        <div className="col-span-2 self-end flex justify-between w-full">
-          <RecipeTimeBar times={recipe.times} />
+        <div className="col-span-2 self-end flex sm:flex-row-reverse justify-between w-full">
           <SaveButton recipe={recipe} />
+          <RecipeTimeBar times={recipe.times} />
         </div>
-        <div className="row-span-2">
+        <div className="hidden sm:block sm:row-span-4">
           {recipe.images.length > 0 && (
             <img
               className="rounded w-full h-full object-cover"
