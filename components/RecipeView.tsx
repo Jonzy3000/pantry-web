@@ -60,46 +60,45 @@ const SaveButton = ({ recipe }: { recipe: Recipe }) => {
 export const RecipeView = ({ recipe }: Props) => {
   return (
     <div className="px-4">
-      <div className="flex  space-x-4 justify-between items-center mt-4">
-        <div>
+      <div className="grid grid-flow-col grid-rows-2 gap-x-8 pb-4 border-b">
+        <div className="col-span-2">
           <h1 className="text-3xl font-semibold">
             <a href={recipe.source} target="#">
-              {recipe.title}{" "}
+              {recipe.title}
             </a>
           </h1>
+          <div className="mt-2">
+            {recipe.description && ReactHtmlParser(recipe.description)}
+          </div>
         </div>
-        <SaveButton recipe={recipe} />
-      </div>
-      <div className="mt-2">
-        {recipe.description && ReactHtmlParser(recipe.description)}
-      </div>
-      <div className="mt-4 w-full flex justify-center">
-        <RecipeTimeBar times={recipe.times} />
-      </div>
-
-      <div className="flex  mt-4">
-        <div className="flex-grow">
-          <h2 className="text-2xl font-medium mb-2">Ingredients</h2>
-
-          <ul className="list-disc list-outside">
-            {recipe.ingredients.map((it) => (
-              <li className="text-lg ml-4" key={it}>
-                {it}
-              </li>
-            ))}
-          </ul>
+        <div className="col-span-2 self-end flex justify-center">
+          <RecipeTimeBar times={recipe.times} />
         </div>
-        <div className="hidden sm:block">
+        <div className="row-span-2">
           {recipe.images.length > 0 && (
             <img
-              className="w-60 ml-15 rounded object-cover"
+              className="rounded w-full h-full object-cover"
               src={recipe.images[0]}
             />
           )}
         </div>
       </div>
-      <h2 className="text-2xl font-medium mt-8 mb-2">Instructions</h2>
-      <div>
+
+      <div className="mt-4">
+        <h2 className="text-2xl font-medium">Ingredients</h2>
+
+        <ul className="list-disc list-outside">
+          {recipe.ingredients.map((it) => (
+            <li className="text-lg ml-4" key={it}>
+              {it}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="mt-8">
+        <h2 className="text-2xl font-medium mb-2">Instructions</h2>
+
         <ul className="list-decimal list-outside">
           {recipe.instructions.map((it) => (
             <li key={Math.random() * 100} className="mb-6 text-lg ml-4">

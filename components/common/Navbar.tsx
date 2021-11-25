@@ -1,15 +1,14 @@
 import { useSession, signIn, signOut } from "next-auth/client";
 import Link from "next/link";
-import { SearchBar } from "../SearchBar";
 import { Button } from "./Button";
 import styles from "./Navbar.module.css";
 
 export const Navbar = () => {
   return (
-    <div className="sticky max-w-6xl mx-auto bg-white top-0 flex flex-wrap items-center px-4 py-6 lg:px-10 ">
+    <div className="sticky max-w-6xl mx-auto bg-white top-0 flex flex-wrap items-center px-4 py-6 lg:px-10">
       <Link href="/">
         <a
-          className={`flex title-font text-lg md:text-2xl font-bold items-center text-gray-900 mb-2 mb-0 ${styles.nav}`}
+          className={`flex title-font text-lg md:text-2xl font-bold items-center text-gray-900 mb-2 ${styles.nav}`}
         >
           🥦🥦 my-pantry
         </a>
