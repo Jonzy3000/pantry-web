@@ -10,7 +10,7 @@ export const useUserRecipes = () => {
   return useQuery<Array<Recipe>>(
     "myRecipes",
     () =>
-      fetch("/api/recipes").then((res) => {
+      fetch("/api/me/recipes").then((res) => {
         if (res.ok) {
           return res.json().then((json) => json.recipes);
         } else {
