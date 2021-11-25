@@ -8,7 +8,6 @@ import {
 } from "../api-queries/userMutations";
 import { Button } from "./common/Button";
 import { RecipeTimeBar } from "./RecipeTimeBar";
-import { useRouter } from "next/router";
 interface Props {
   recipe: Recipe;
 }
@@ -34,6 +33,7 @@ const SaveButton = ({ recipe }: { recipe: Recipe }) => {
   if (data.recipes.includes(recipe.id)) {
     return (
       <Button
+        className="w-24"
         variant="info"
         onClick={() => {
           removeMutation.mutate(recipe.id);
@@ -46,6 +46,7 @@ const SaveButton = ({ recipe }: { recipe: Recipe }) => {
   return (
     <div>
       <Button
+        className="w-24"
         variant="primary"
         onClick={() => {
           addMutation.mutate(recipe);
@@ -60,9 +61,9 @@ const SaveButton = ({ recipe }: { recipe: Recipe }) => {
 export const RecipeView = ({ recipe }: Props) => {
   return (
     <div className="px-4">
-      <div className="grid grid-flow-col grid-rows-2 gap-x-8 pb-4 border-b">
+      <div className="grid grid-flow-col grid-rows-2 gap-x-8 pb-6 border-b">
         <div className="col-span-2">
-          <h1 className="text-3xl font-semibold">
+          <h1 className="text-4xl font-semibold">
             <a href={recipe.source} target="#">
               {recipe.title}
             </a>
@@ -71,8 +72,9 @@ export const RecipeView = ({ recipe }: Props) => {
             {recipe.description && ReactHtmlParser(recipe.description)}
           </div>
         </div>
-        <div className="col-span-2 self-end flex justify-center">
+        <div className="col-span-2 self-end flex justify-between w-full">
           <RecipeTimeBar times={recipe.times} />
+          <SaveButton recipe={recipe} />
         </div>
         <div className="row-span-2">
           {recipe.images.length > 0 && (
@@ -84,8 +86,8 @@ export const RecipeView = ({ recipe }: Props) => {
         </div>
       </div>
 
-      <div className="mt-4">
-        <h2 className="text-2xl font-medium">Ingredients</h2>
+      <div className="mt-10">
+        <h2 className="text-3xl font-bold mb-4">Ingredients</h2>
 
         <ul className="list-disc list-outside">
           {recipe.ingredients.map((it) => (
@@ -97,7 +99,7 @@ export const RecipeView = ({ recipe }: Props) => {
       </div>
 
       <div className="mt-8">
-        <h2 className="text-2xl font-medium mb-2">Instructions</h2>
+        <h2 className="text-3xl font-bold mb-4">Instructions</h2>
 
         <ul className="list-decimal list-outside">
           {recipe.instructions.map((it) => (
