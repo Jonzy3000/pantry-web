@@ -72,7 +72,7 @@ export const RecipeView = ({ recipe }: Props) => {
             {recipe.description && ReactHtmlParser(recipe.description)}
           </div>
         </div>
-        <div className="col-span-2 self-end flex sm:flex-row-reverse justify-between w-full">
+        <div className="col-span-2 self-end flex sm:flex-row-reverse gap-3 justify-between w-full">
           <SaveButton recipe={recipe} />
           <RecipeTimeBar times={recipe.times} />
         </div>
