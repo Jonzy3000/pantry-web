@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { RecipeSkeletonView, RecipeView } from "../../components/RecipeView";
-import { findRecipeById } from "../../server/db/recipesRepository";
+import { findRecipeById, findRecipes } from "../../server/db/recipesRepository";
 
 const Recipe = ({ recipe }) => {
   const router = useRouter();
@@ -20,8 +20,9 @@ const Recipe = ({ recipe }) => {
 };
 
 export async function getStaticPaths() {
+  const firstNRecipes = await findRecipes(0, 100);
   return {
-    paths: [],
+    paths: firstNRecipes.map((recipe) => ({ params: { id: recipe.id } })),
     fallback: true,
   };
 }
@@ -29,7 +30,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const recipe = await findRecipeById(params.id);
 
-  return { props: { recipe }, revalidate: 60 * 10 };
+  return { props: { recipe } };
 }
 
 export default Recipe;
