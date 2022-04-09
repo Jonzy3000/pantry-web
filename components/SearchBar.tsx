@@ -10,9 +10,9 @@ export const SearchBar = ({ initialValue }: Props) => {
   const router = useRouter();
 
   return (
-    <div className="flex items-center bg-transparent border-purple-500 rounded border p-3 focus-within:shadow-outline">
+    <div className="flex items-center bg-white border-purple-500 rounded border p-3 focus-within:shadow-outline">
       <Input
-        className="w-full bg-transparent focus:outline-none text-xl"
+        className="w-full focus:outline-none text-xl"
         initialValue={initialValue}
         onSubmit={(value) =>
           router.push({ pathname: "/search", query: { q: value } })

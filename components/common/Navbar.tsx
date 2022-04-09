@@ -5,17 +5,19 @@ import styles from "./Navbar.module.css";
 
 export const Navbar = () => {
   return (
-    <div className="sticky max-w-6xl mx-auto bg-white top-0 flex flex-wrap items-center px-4 py-6 lg:px-10">
-      <Link href="/">
-        <a
-          className={`flex title-font text-lg md:text-2xl font-bold items-center text-gray-900 mb-2 ${styles.nav}`}
-        >
-          🥦🥦 my-pantry
-        </a>
-      </Link>
-      <span className="ml-auto flex flex-wrap items-center">
-        <LoginSensitiveNav />
-      </span>
+    <div className="sticky bg-white top-0">
+      <nav className="flex max-w-6xl mx-auto flex-wrap items-center px-4 py-6 lg:px-10">
+        <Link href="/">
+          <a
+            className={`flex title-font text-lg md:text-2xl font-bold items-center text-gray-900 mb-2 ${styles.nav}`}
+          >
+            🥦🥦 my-pantry
+          </a>
+        </Link>
+        <span className="ml-auto flex flex-wrap items-center">
+          <LoginSensitiveNav />
+        </span>
+      </nav>
     </div>
   );
 };
