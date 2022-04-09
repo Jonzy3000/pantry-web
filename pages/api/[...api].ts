@@ -15,7 +15,7 @@ export default async function handler(
       return;
     }
 
-    if (req.url.includes("/api/me/recipes")) {
+    if (req.url.includes("/api/me/recipes/")) {
       await myRecipes(req, res);
       return;
     }

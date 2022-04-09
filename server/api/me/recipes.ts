@@ -7,7 +7,6 @@ import {
 } from "../../db/usersRepository";
 import { User } from "../../../types/user";
 import { getUserFromSession } from "../me";
-import { findRecipesByIds } from "../../db/recipesRepository";
 
 export default async function handler(
   req: NextApiRequest,
@@ -29,12 +28,6 @@ export default async function handler(
     }
 
     res.status(404).end();
-    return;
-  }
-
-  if (req.method === "GET") {
-    const recipes = await findRecipesByIds(user.recipes);
-    res.status(200).json({ recipes });
     return;
   }
 

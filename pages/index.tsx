@@ -1,20 +1,13 @@
 import { useSession } from "next-auth/client";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
-import { useQuery } from "react-query";
-import { useRecipes } from "../api-queries/useRecipes";
 import { RecipeList, RecipeListSkeleton } from "../components/RecipeList";
 import { SearchBar } from "../components/SearchBar";
 import { findRecipes } from "../server/db/recipesRepository";
 import { Recipe } from "../types/recipe";
 
-export default function Home({
-  initialRecipes,
-}: {
-  initialRecipes: Array<Recipe>;
-}) {
+export default function Home({ recipes }: { recipes: Array<Recipe> }) {
   const router = useRouter();
-  const { data: recipes } = useRecipes(initialRecipes);
 
   return (
     <div className="w-full flex flex-col items-center">
@@ -45,5 +38,5 @@ export default function Home({
 export async function getStaticProps() {
   const recipes = await findRecipes();
 
-  return { props: { initialRecipes: recipes } };
+  return { props: { recipes }, revalidate: 60 * 10 };
 }
