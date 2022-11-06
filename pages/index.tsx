@@ -1,10 +1,10 @@
-import { useSession } from "next-auth/client";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { RecipeList, RecipeListSkeleton } from "../components/RecipeList";
 import { SearchBar } from "../components/SearchBar";
 import { findRecipes } from "../server/db/recipesRepository";
 import { Recipe } from "../types/recipe";
+import _ from "next/head"
 
 export default function Home({ recipes }: { recipes: Array<Recipe> }) {
   const router = useRouter();

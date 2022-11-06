@@ -1,5 +1,5 @@
 import { Recipe } from "../types/recipe";
-import ReactHtmlParser from "react-html-parser";
+import ReactHtmlParser from "@hedgedoc/html-to-react";
 import React, { useEffect } from "react";
 import { useUser } from "../api-queries/useUser";
 import {

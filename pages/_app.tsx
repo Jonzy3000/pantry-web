@@ -1,9 +1,9 @@
 import Head from "next/head";
 import "../styles/globals.css";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ErrorBoundary } from "../components/common/ErrorBoundary";
-import { Provider } from "next-auth/client";
+import { SessionProvider } from "next-auth/react";
 import { useEffect } from "react";
 import { PageLayout } from "../components/common/PageLayout";
 import { AppProps } from "next/dist/shared/lib/router/router";
@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
   });
 
   return (
-    <Provider session={pageProps.session}>
+    <SessionProvider session={pageProps.session}>
       <QueryClientProvider client={queryClient}>
         <ErrorBoundary>
           <div>
@@ -52,7 +52,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
           <ReactQueryDevtools initialIsOpen />
         </ErrorBoundary>
       </QueryClientProvider>
-    </Provider>
+    </SessionProvider>
   );
 }
 

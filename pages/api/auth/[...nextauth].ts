@@ -1,15 +1,17 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
-import Providers from "next-auth/providers";
+import GoogleProvider from "next-auth/providers/google"
+import { connectToDatabase } from "../../../server/db/mongodb";
+import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
 require("mongodb");
 
 const options: NextAuthOptions = {
   providers: [
-    Providers.Google({
+    GoogleProvider({
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET,
     }),
   ],
-  database: process.env.MONGO_DB_URI,
+ adapter: MongoDBAdapter(connectToDatabase().then(connection => connection.client))
 };
 
 export default (req, res) => NextAuth(req, res, options);
